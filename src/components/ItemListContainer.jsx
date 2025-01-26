@@ -1,5 +1,5 @@
 import React from 'react';
-import './ItemListContainer.css'; // Importamos el archivo CSS
+import './ItemListContainer.css'; 
 
 const ItemListContainer = ({ children }) => { 
   return (

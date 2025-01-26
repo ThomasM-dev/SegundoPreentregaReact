@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoCart } from "react-icons/io5";
-import './CartWidget.css'; // Asegúrate de tener el archivo CSS para el estilo
+import './CartWidget.css'; 
 
 const CartWidget = () => {
   return (
