@@ -1,0 +1,12 @@
+/* CartWidget.css */
+.cart-widget {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .cart-widget svg {
+    width: 30px; 
+    height: 30px; 
+  }
+  
