@@ -1,0 +1,157 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Smartphone Galaxy S21",
+      "description": "Pantalla AMOLED de 6.2 pulgadas, 128GB almacenamiento, triple cámara.",
+      "price": 699.99,
+      "stock": 20,
+      "imageUrl": "https://m.media-amazon.com/images/I/41O5rizDJbL.jpg",
+      "category": "Smartphones"
+    },
+    {
+      "id": 2,
+      "title": "iPhone 13",
+      "description": "Pantalla Super Retina XDR de 6.1 pulgadas, 128GB almacenamiento, cámara dual.",
+      "price": 799.99,
+      "stock": 44,
+      "imageUrl": "https://isenacode.com/wp-content/uploads/2023/09/iphone-13-como-puerta-entrada-ecosistema-d-758x569.jpg",
+      "category": "Smartphones"
+    },
+    {
+      "id": 3,
+      "title": "Xiaomi Redmi Note 11",
+      "description": "Pantalla AMOLED de 6.43 pulgadas, 128GB almacenamiento, batería de 5000mAh.",
+      "price": 299.99,
+      "stock": 26,
+      "imageUrl": "https://images.fravega.com/f300/d8793e881d76daccf80427cb2c4d37ec.jpg.webp",
+      "category": "Smartphones"
+    },
+    {
+      "id": 4,
+      "title": "Google Pixel 6",
+      "description": "Pantalla OLED de 6.4 pulgadas, procesador Google Tensor, 128GB almacenamiento.",
+      "price": 599.99,
+      "stock": 25,
+      "imageUrl": "https://m.media-amazon.com/images/I/31vPG6tvkmL.jpg",
+      "category": "Smartphones"
+    },
+    {
+      "id": 5,
+      "title": "Netbook HP Stream",
+      "description": "Pantalla de 14 pulgadas, 64GB almacenamiento eMMC, procesador Intel Celeron.",
+      "price": 299.99,
+      "stock": 34,
+      "imageUrl": "https://ar-media.hptiendaenlinea.com/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/2/M/2M6K7LA-1_T1679633388.png",
+      "category": "Laptops"
+    },
+    {
+      "id": 6,
+      "title": "Lenovo IdeaPad 1",
+      "description": "Pantalla de 14 pulgadas, 128GB almacenamiento SSD, procesador AMD Athlon.",
+      "price": 349.99,
+      "stock": 45,
+      "imageUrl": "https://images.fravega.com/f300/937806da60c4940ee2c613372dd051c9.jpg.webp",
+      "category": "Laptops"
+    },
+    {
+      "id": 7,
+      "title": "Acer Aspire 1",
+      "description": "Pantalla de 15.6 pulgadas, procesador Intel Pentium, 4GB RAM, 128GB SSD.",
+      "price": 379.99,
+      "stock": 13,
+      "imageUrl": "https://m.media-amazon.com/images/I/41XsBc5mJ7S.jpg",
+      "category": "Laptops"
+    },
+    {
+      "id": 8,
+      "title": "ASUS Chromebook Flip",
+      "description": "Pantalla táctil Full HD de 14 pulgadas, 64GB almacenamiento eMMC, Chrome OS.",
+      "price": 429.99,
+      "stock": 17,
+      "imageUrl": "https://m.media-amazon.com/images/I/71UV2RsG5UL._AC_SX466_.jpg",
+      "category": "Laptops"
+    },
+    {
+      "id": 9,
+      "title": "Cargador inalámbrico",
+      "description": "Base de carga rápida compatible con Qi, diseño compacto.",
+      "price": 39.99,
+      "stock": 23,
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_831530-MLA69289849154_052023-O.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 10,
+      "title": "Auriculares Inalámbricos JBL Tune 520bt Azul",
+      "description": "Los auriculares JBL Tune 520BT transmiten el potente sonido JBL Pure Bass gracias a la última tecnología 5.3 BT.",
+      "price": 49.99,
+      "stock": 64,
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_866274-MLA74805955125_022024-O.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 11,
+      "title": "Tripode Flexible Camaras Celular Tipo Pulpo Gopro Cuo",
+      "description": "Mini trípode flexible y articulado con rosca universal para cámaras o celulares.",
+      "price": 19.99,
+      "stock": 47,
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_663918-MLA44174037693_112020-O.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 12,
+      "title": "Cargador Portátil Xiaomi Redmi 20000mah Carga Rápida 18w Color Negro",
+      "description": "Cargador portátil para mantener tus dispositivos cargados en todo momento.",
+      "price": 59.99,
+      "stock": 64,
+      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_893204-MLC48849483629_012022-O.webp",
+      "category": "Accesorios"
+    },
+    {
+      "id": 13,
+      "title": "Pelota de Futbol",
+      "description": "Pelota de fútbol tamaño oficial para niños.",
+      "price": 20,
+      "stock": 39,
+      "imageUrl": "https://d28hi93gr697ol.cloudfront.net/586d6ca1-ace0-eb27-9e0b-2d0d3c3c6062/img/Producto/8b11b5ce-6fd6-d9c0-9cc5-acfaa5d988a8/Diseno-sin-titulo-2024-08-22T145200-176-66c77abd7f09d.webp",
+      "category": "Deportes"
+    },
+    {
+      "id": 14,
+      "title": "Lego Clasic",
+      "description": "Set de bloques de construcción creativos.",
+      "price": 50,
+      "stock": 76,
+      "imageUrl": "https://m.media-amazon.com/images/I/91XHi5cJDML._AC_SL1500_.jpg",
+      "category": "Juguetes"
+    },
+    {
+      "id": 15,
+      "title": "Muñeca Barbie",
+      "description": "Muñeca Barbie con accesorios de moda.",
+      "price": 60,
+      "stock": 23,
+      "imageUrl": "https://imgs.search.brave.com/hphOmyPH7g5bC9zGpsBEorTRPz2XQFkLaZlAMFxfEac/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFWY0ZsOFgzMkwu/anBn",
+      "category": "Juguetes"
+    },
+    {
+      "id": 16,
+      "title": "Carro de control remoto",
+      "description": "Carro de control remoto con batería recargable.",
+      "price": 45,
+      "stock": 54,
+      "imageUrl": "https://imgs.search.brave.com/J2ghuZPBalO9iksy1rNtBhn7PsxEfQaXnNKYDvzHaYY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFrYTUwbWVLekwu/anBn",
+      "category": "Juguetes"
+    },
+    {
+      "id": 17,
+      "title": "Puzzle",
+      "description": "Puzzle de 1000 piezas.",
+      "price": 120,
+      "stock": 67,
+      "imageUrl": "https://imgs.search.brave.com/VnjVgta6keL1eD48H74_srWvxvNZ3JsoU40z-mfj8jY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFzeWpCWkdrbEwu/X0FDLl9TUjE4MCwy/MzAuanBn",
+      "category": "Juguetes"
+    }
+  ]
+}
