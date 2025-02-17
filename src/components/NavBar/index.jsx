@@ -17,13 +17,7 @@ import { Link } from "react-router-dom";
 
 const NavBar = ({ colorNav }) => {
   const [visible, setVisible] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  // Simulación de obtener la cantidad de productos en el carrito
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartCount(storedCart.length);
-  }, []);
+  const [cartCount, setCartCount] = useState(3);
 
   return (
     <CNavbar expand="lg" className={`navbar-bg p-2 ${visible ? "collapse-nav" : ""}`}>

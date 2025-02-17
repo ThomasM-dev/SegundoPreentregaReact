@@ -23,8 +23,6 @@ const CategoryPage = () => {
   return (
     <div className="page-catologo">
       <h2>Productos en la categoría: {category}</h2>
-
-      {/* Coloca el filtro de categorías */}
       <CategoryFilter products={products.products} setCategory={setSelectedCategory} />
 
       <div className="product-container">
