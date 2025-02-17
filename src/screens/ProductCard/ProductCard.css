@@ -45,8 +45,6 @@
 .container .imgBx img {
     position: relative;
     width: 450px;
-    transform: rotate(-30deg);
-    left: -50px;
     transition: .9s linear;
 }
 
