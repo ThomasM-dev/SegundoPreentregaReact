@@ -26,19 +26,15 @@ const CategoryPage = () => {
       <CategoryFilter products={products.products} />
 
       <div className="product-container">
-        {filteredProducts.length === 0 ? (
-          <p>No se encontraron productos en esta categoría.</p>
-        ) : (
-          filteredProducts.map((product) => (
-            <div key={product.id} className="card-item-catologo">
-              <h3>{product.title}</h3>
-              <img src={product.imageUrl} alt={product.title} />
-              <p>${product.price} ARS</p>
-              <p>Categoría: {product.category}</p>
-              <Link to={`/categoria/${product.category}/DetalleProducto/${product.id}`}>Ver detalle</Link>
-            </div>
-          ))
-        )}
+        {filteredProducts.map((product) => (
+          <div key={product.id} className="card-item-catologo">
+            <h3>{product.title}</h3>
+            <img src={product.imageUrl} alt={product.title} />
+            <p>${product.price} ARS</p>
+            <p>Categoría: {product.category}</p>
+            <Link to={`/categoria/${product.category}/DetalleProducto/${product.id}`}>Ver detalle</Link>
+          </div>
+        ))}
       </div>
     </div>
   );

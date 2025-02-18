@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import "./CategoryFilter.css";
 
 const CategoryFilter = ({ products }) => {
-  const categories = [...new Set(products.map((product) => product.category))];
+  const categories = products.map((product) => product.category);
+
+  const uniqueCategories = [];
+
+  for (let i = 0; i < categories.length; i++) {
+    if (!uniqueCategories.includes(categories[i])) {
+      uniqueCategories.push(categories[i]);
+    }
+  }
 
   return (
     <div className="category-filter">
@@ -13,12 +21,9 @@ const CategoryFilter = ({ products }) => {
             Todos los productos
           </Link>
         </li>
-        {categories.map((category) => (
+        {uniqueCategories.map((category) => (
           <li key={category}>
-            <Link
-              to={`/categoria/${category}`}
-              className="category-link"
-            >
+            <Link to={`/categoria/${category}`} className="category-link">
               {category}
             </Link>
           </li>
