@@ -5,11 +5,13 @@ import Cart from "./screens/Cart";
 import ProductCard from "./screens/ProductCard";
 import CategoryPage from "./screens/CategoryPage";
 import "./App.css";
+import uploadProducts from "./config/uploadProducts";
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar colorNav="white" />
+      <button onClick={uploadProducts}>Subir Productos</button>
       <Routes>
         <Route path="/Carrito" element={<Cart />} />
         <Route path="/Preguntas-Frecuentes" element={<Faq />} />
