@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   CContainer,
   CNavbar,
@@ -14,10 +14,13 @@ import "./NavBar.css";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const NavBar = ({ colorNav }) => {
   const [visible, setVisible] = useState(false);
-  const [cartCount, setCartCount] = useState(3);
+  const { cart } = useCart(); 
+
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <CNavbar expand="lg" className={`navbar-bg p-2 ${visible ? "collapse-nav" : ""}`}>
@@ -32,16 +35,15 @@ const NavBar = ({ colorNav }) => {
 
         <CCollapse className="navbar-collapse" visible={visible}>
           <CNavbarNav className="custom-nav">
-            {[
-              { label: "Catálogo", to: "/" },
-              { label: "Preguntas Frecuentes", to: "/Preguntas-Frecuentes" },
-            ].map(({ label, to }) => (
-              <CNavItem key={label}>
-                <CNavLink as={Link} to={to} className="nav-link-custom">
-                  {label}
-                </CNavLink>
-              </CNavItem>
-            ))}
+            {[{ label: "Catálogo", to: "/" }, { label: "Preguntas Frecuentes", to: "/Preguntas-Frecuentes" }].map(
+              ({ label, to }) => (
+                <CNavItem key={label}>
+                  <CNavLink as={Link} to={to} className="nav-link-custom">
+                    {label}
+                  </CNavLink>
+                </CNavItem>
+              )
+            )}
           </CNavbarNav>
 
           <CNavItem className="cart">

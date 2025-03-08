@@ -51,9 +51,5 @@ export const CartProvider = ({ children }) => {
 
 export const useCart = () => {
   const context = useContext(CartContext);
-  if (!context) {
-    console.error("🚨 useCart se está usando fuera de CartProvider!");
-    return {};
-  }
   return context;
 };
