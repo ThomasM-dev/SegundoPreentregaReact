@@ -1,19 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import products from "../../data/products.json";
+import { doc, getDoc} from "firebase/firestore";
+import { db } from "../../config/firebaseConfig";
 import "./ProductCard.css";
 
 const ProductCard = () => {
   const { itemId } = useParams();
+  
   const { addToCart } = useCart();
   const [prod, setProd] = useState({});
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const product = products.products.find((p) => p.id === Number(itemId));
-    if (product) setProd(product);
+    const fetchProduct = async () => {
+      try {
+        const productRef = doc(db, "productos", itemId); 
+        
+        const productDoc = await getDoc(productRef);
+
+        if (productDoc.exists()) {
+          setProd(productDoc.data());
+        } else {
+          console.log("Producto no encontrado");
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto:", error);
+      }
+    };
+
+    if (itemId) {
+      fetchProduct(); // Llama la función de obtención del producto
+    }
   }, [itemId]);
 
   const handleAddToCart = () => {

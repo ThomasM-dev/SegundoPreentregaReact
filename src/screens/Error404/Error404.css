@@ -1,0 +1,87 @@
+.error-404-container {
+    background-color: #08131d;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .error-content {
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    padding: 2rem;
+  }
+  
+  .error-number {
+    font-size: 10rem;
+    color: #df0136;
+    margin: 0;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(223, 1, 54, 0.3);
+    animation: pulse 2s infinite;
+  }
+  
+  .error-title {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    color: #df0136;
+  }
+  
+  .error-message {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+  }
+  
+  .error-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #df0136;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #df0136;
+  }
+  
+  .error-button:hover {
+    background-color: transparent;
+    color: #df0136;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(223, 1, 54, 0.4);
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .error-number {
+      font-size: 6rem;
+    }
+  
+    .error-title {
+      font-size: 1.8rem;
+    }
+  
+    .error-message {
+      font-size: 1rem;
+    }
+  
+    .error-button {
+      padding: 0.8rem 1.5rem;
+    }
+  }
