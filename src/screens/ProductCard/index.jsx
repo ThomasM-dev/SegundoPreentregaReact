@@ -17,7 +17,7 @@ const ProductCard = () => {
   }, [itemId]);
 
   const handleAddToCart = () => {
-    addToCart({ ...prod, quantity, totalPrice: prod.price * quantity })
+    addToCart({ ...prod, quantity, totalPrice: prod.price * quantity });
     setIsAdded(true);
   };
 
