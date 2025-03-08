@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./ProductCard.css";
+import { useCart } from "../../context/CartContext";
 import products from "../../data/products.json";
+import "./ProductCard.css";
 
 const ProductCard = () => {
   const { itemId } = useParams();
-  const [prod, setProd] = useState(null);
-  const [isAdded, setIsAdded] = useState(false); 
-  
+  const { addToCart } = useCart();
+  const [prod, setProd] = useState({});
+  const [isAdded, setIsAdded] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
-    const product = products.products.find((product) => product.id === Number(itemId));    
-    setProd(product);
+    const product = products.products.find((p) => p.id === Number(itemId));
+    if (product) setProd(product);
   }, [itemId]);
 
-  const handleClick = (product) => {
-    setIsAdded(!isAdded); 
-    console.log(`${product.title} agregado al carrito`);
+  const handleAddToCart = () => {
+    addToCart({ ...prod, quantity, totalPrice: prod.price * quantity })
+    setIsAdded(true);
   };
 
-  if (!prod) return <div>Cargando...</div>; 
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <div className="body">
@@ -36,14 +47,46 @@ const ProductCard = () => {
                 : "Precio no disponible"}
             </h3>
 
-            <div className="button-animation-container">
+            <div className="quantity-container">
+              <label htmlFor="quantity" className="quantity-label">
+                Cantidad
+              </label>
+              <div className="quantity-controls">
+                <button
+                  onClick={decreaseQuantity}
+                  className="quantity-btn"
+                  aria-label="Disminuir cantidad"
+                >
+                  -
+                </button>
+                <span id="quantity" className="quantity">
+                  {quantity}
+                </span>
+                <button
+                  onClick={increaseQuantity}
+                  className="quantity-btn"
+                  aria-label="Aumentar cantidad"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className="button-animation-container" aria-live="polite">
               <div className={`btn-wrapper ${isAdded ? "add" : ""}`}>
                 <button
                   className="add-to-cart buttonCart"
-                  onClick={() => handleClick(prod)}
-                  aria-label="Add to cart"
+                  onClick={handleAddToCart}
+                  disabled={isAdded}
+                  aria-label={
+                    isAdded
+                      ? "Producto agregado al carrito"
+                      : "Agregar al carrito"
+                  }
                 >
-                  <span className="btn-text">{isAdded ? "Agregado" : "Agregar al carrito"}</span>
+                  <span className="btn-text">
+                    {isAdded ? "Agregado" : "Agregar al carrito"}
+                  </span>
                 </button>
 
                 <svg

@@ -255,3 +255,41 @@
       opacity: 1;
     }
   }
+ 
+  .quantity-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .quantity-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-btn {
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .quantity-btn:hover {
+    background-color: red;
+  }
+  
+  .quantity {
+    font-size: 20px;
+    margin: 0 10px;
+    color: white;
+  }

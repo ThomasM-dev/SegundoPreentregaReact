@@ -1,34 +1,48 @@
-import React from 'react';
-import './Cart.css'; 
-const Cart = () => {
-  
-  const products = [
-    { id: 1, name: 'Producto 1', price: 20.99 },
-    { id: 2, name: 'Producto 2', price: 15.49 },
-    { id: 3, name: 'Producto 3', price: 10.00 },
-  ];
+import React from "react";
+import { useCart } from "../../context/CartContext";
+import "./Cart.css";
+import { MdDelete } from "react-icons/md";
 
+
+const Cart = () => {
+  const { cart, dispatch } = useCart();
+  console.log(cart);
   
-  const total = products.reduce((sum, product) => sum + product.price, 0);
+  const total = cart.reduce((sum, product) => sum + product.totalPrice, 0);
 
   return (
-    <>
     <div className="cart-page">
       <h2 className="cart-header">Carrito de Compras</h2>
       <div className="product-list">
-        {products.map((product) => (
-          <div key={product.id} className="product">
-            <span className="product-name">{product.name}</span>
-            <span className="product-price">${product.price.toFixed(2)}</span>
-          </div>
-        ))}
+        {cart.length > 0 ? (
+          cart.map((product) => (
+            <div key={product.id} className="product">
+              <img src={product.imageUrl} className="imgProduct" alt={`Imagen del producto ${product.title}`} />
+              <span className="product-name">{product.title}</span>
+              <span className="product-price">${product.totalPrice.toFixed(2)}</span>
+              <span>{product.quantity}</span>
+              <button 
+                className="remove-btn" 
+                onClick={() => dispatch({ type: "REMOVE_FROM_CART", payload: product.id })}
+              >
+                <MdDelete />
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Tu carrito está vacío</p>
+        )}
       </div>
       <div className="total">
         <span>Total:</span>
         <span className="total-price">${total.toFixed(2)}</span>
       </div>
+      {cart.length > 0 && (
+        <button className="clear-cart" onClick={() => dispatch({ type: "CLEAR_CART" })}>
+          Vaciar carrito
+        </button>
+      )}
     </div>
-    </>
   );
 };
 
