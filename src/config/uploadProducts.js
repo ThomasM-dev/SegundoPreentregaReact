@@ -3,7 +3,7 @@ import { db } from "../config/firebaseConfig";
 
 const uploadProducts = async () => {
   try {
-    // Cargar JSON desde public/
+    
     const response = await fetch("/products.json");
     const productos = await response.json();
 
@@ -13,9 +13,9 @@ const uploadProducts = async () => {
       await addDoc(collectionRef, product);
     }
 
-    console.log("✅ Productos subidos correctamente a Firestore.");
+    console.log("Productos subidos correctamente a firestore.");
   } catch (error) {
-    console.error("❌ Error subiendo productos:", error);
+    console.error(" Error al subir los productos:", error);
   }
 };
 
