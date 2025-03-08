@@ -22,8 +22,8 @@ const CategoryPage = () => {
 
         const querySnapshot = await getDocs(productsQuery);        
         const productsList = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
           ...doc.data(),
+          id: doc.id
         }));
         setFilteredProducts(productsList);
       } catch (error) {

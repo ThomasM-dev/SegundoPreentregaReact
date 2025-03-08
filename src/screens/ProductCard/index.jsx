@@ -22,6 +22,8 @@ const ProductCard = () => {
 
         if (productDoc.exists()) {
           setProd(productDoc.data());
+          console.log(productDoc.data());
+          
         } else {
           console.log("Producto no encontrado");
         }
@@ -31,7 +33,7 @@ const ProductCard = () => {
     };
 
     if (itemId) {
-      fetchProduct(); // Llama la función de obtención del producto
+      fetchProduct();
     }
   }, [itemId]);
 
