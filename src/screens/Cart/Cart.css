@@ -95,6 +95,25 @@
   margin-top: 20px;
 }
 
+.btn-finishs-cart {
+  text-align: center;
+  color: white;
+  padding: 10px; 
+  font-size: 16px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  width: 100%;
+  text-decoration: none;
+  transition: background-color 0.3s; 
+  margin-top: 20px;
+  background-color: transparent;
+  border: none; 
+}
+.btn-finishs-cart:hover {
+  border-radius: 8px; 
+  border: 1px solid red;
+  color: #e2003b;
+}
 .clear-cart:hover {
   background-color: #9b001f;
 }

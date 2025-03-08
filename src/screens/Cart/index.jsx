@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 import { MdDelete } from "react-icons/md";
 
@@ -43,6 +44,11 @@ const Cart = () => {
         <span>Total:</span>
         <span className="total-price">${total.toFixed(2)}</span>
       </div>
+      {cart.length > 0 && (
+        <Link className="btn-finishs-cart" to="/Checkout">
+          Finalizar Compra
+        </Link>
+      )}
       {cart.length > 0 && (
         <button
           className="clear-cart"

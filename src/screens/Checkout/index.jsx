@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { db } from '../../config/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import './Checkout.css';
+import { useCart } from '../../context/CartContext';
 
 const Checkout = () => {
+  const { cart } = useCart();
+  
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -25,23 +28,32 @@ const Checkout = () => {
     setLoading(true);
 
     try {
+      
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío");
+        return;
+      }
+
       const order = {
         buyer: {
           nombre: formData.nombre,
           apellido: formData.apellido,
           email: formData.email
         },
+        items: cart, 
         date: new Date().toISOString(),
       };
 
       const docRef = await addDoc(collection(db, 'orders'), order);
       setOrderId(docRef.id);
       
+      
       setFormData({
         nombre: '',
         apellido: '',
         email: ''
       });
+
     } catch (error) {
       console.error('Error al crear la orden:', error);
     } finally {
