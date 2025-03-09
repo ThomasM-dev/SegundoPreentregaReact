@@ -3,33 +3,14 @@ import { collection, addDoc, getDoc, updateDoc, getFirestore, doc } from 'fireba
 import './Checkout.css';
 import { useCart } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useProducts } from '../../context/ProductsContext';
 
 const Checkout = () => {
   const { cart, dispatch } = useCart();
+  const { products } = useProducts();
   const navigate = useNavigate();
   const db = getFirestore();
-
-  async function reducerStock(itemId, cantidadComprada) {
-    const productoRef = doc(db, 'productos', itemId);
-    try {
-      const productoDoc = await getDoc(productoRef);      
-      if (productoDoc.exists()) {
-        const producto = productoDoc.data();
-        const stockActual = producto.stock;  
-        if (stockActual >= cantidadComprada) {
-          const nuevoStock = stockActual - cantidadComprada;  
-          await updateDoc(productoRef, { stock: nuevoStock });
-        } else {
-          console.log('No hay suficiente stock para completar la compra.');
-        }
-      } else {
-        console.log('El producto no existe en la base de datos.');
-      }
-    } catch (error) {
-      console.error('Error al reducir el stock:', error);
-    }
-  }
-
+  
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -37,6 +18,30 @@ const Checkout = () => {
   });
   const [orderId, setOrderId] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const reducerStock = async (itemId, cantidadComprada) => {
+    try {
+      const productoRef = doc(db, 'productos', itemId);
+      const productoDoc = await getDoc(productoRef);
+      
+      if (productoDoc.exists()) {
+        const producto = productoDoc.data();
+        const stockActual = producto.stock;
+        console.log(stockActual);
+        
+        if (stockActual >= cantidadComprada) {
+          const nuevoStock = stockActual - cantidadComprada;
+          await updateDoc(productoRef, { stock: nuevoStock });
+        } else {
+          console.error('No hay suficiente stock para completar la compra.');
+        }
+      } else {
+        console.error('El producto no existe en la base de datos.');
+      }
+    } catch (error) {
+      console.error('Error al reducir el stock:', error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,19 +55,16 @@ const Checkout = () => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      if (cart.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-      }
+    if (cart.length === 0) {
+      alert("Tu carrito está vacío");
+      setLoading(false);
+      return;
+    }
 
+    try {
       const order = {
-        buyer: {
-          nombre: formData.nombre,
-          apellido: formData.apellido,
-          email: formData.email
-        },
-        items: cart, 
+        buyer: formData,
+        items: cart,
         date: new Date().toISOString(),
       };
 
@@ -72,12 +74,8 @@ const Checkout = () => {
       for (let item of cart) {
         await reducerStock(item.idFirestore, item.quantity);
       }
-      
-      setFormData({
-        nombre: '',
-        apellido: '',
-        email: ''
-      });
+
+      setFormData({ nombre: '', apellido: '', email: '' });
 
     } catch (error) {
       console.error('Error al crear la orden:', error);
@@ -94,7 +92,7 @@ const Checkout = () => {
     return (
       <div className="checkout-container container-orders">
         <h2 className="checkout-text">
-          Gracias por tu compra!<br />
+          ¡Gracias por tu compra!<br />
           Tu orden es: {orderId}
         </h2>
         <h3>Detalles de la Orden:</h3>

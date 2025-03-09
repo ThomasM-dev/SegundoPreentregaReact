@@ -1,43 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../config/firebaseConfig";
+import { useProducts } from "../../context/ProductsContext";
 import CategoryFilter from "../../components/CategoryFilter";
-import Spinner from "../../components/Spinner"
+import Spinner from "../../components/Spinner";
 import "./CategoryPage.css";
 
 const CategoryPage = () => {
   const { category } = useParams();
+  const { products, loading } = useProducts();
+  
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        let productsQuery;
-
-        if (category && category !== "undefined") {
-          productsQuery = query(collection(db, "productos"), where("category", "==", category));
-        } else {
-          productsQuery = collection(db, "productos");
-        }
-
-        const querySnapshot = await getDocs(productsQuery);
-        const productsList = querySnapshot.docs.map((doc) => ({
-          idFirestore: doc.id,
-          ...doc.data(),
-        }));
-        setFilteredProducts(productsList);
-      } catch (error) {
-        console.error("Error al obtener productos de Firestore:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [category]);
+    if (category && category !== "undefined") {
+      setFilteredProducts(products.filter(product => product.category === category));
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [category, products]);
 
   return (
     <div className="page-catologo">

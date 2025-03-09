@@ -1,42 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../config/firebaseConfig";
+import { useProducts } from "../../context/ProductsContext";
 import Spinner from "../../components/Spinner";
 import "./ProductCard.css";
 
 const ProductCard = () => {
-  const { itemId } = useParams();
+  const { itemId } = useParams();  
   const { addToCart } = useCart();
+  const { products } = useProducts();
   const [prod, setProd] = useState({});
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      setLoading(true);
-      try {
-        const productRef = doc(db, "productos", itemId);
-        const productDoc = await getDoc(productRef);
-
-        if (productDoc.exists()) {
-          setProd(productDoc.data());
-        } else {
-          console.log("Producto no encontrado");
-        }
-      } catch (error) {
-        console.error("Error al obtener el producto:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (itemId) {
-      fetchProduct();
+    setLoading(true);
+    const product = products.find((product) => product.idFirestore === itemId);
+    if (product) {
+      setProd(product);
+    } else {
+      console.log("Producto no encontrado");
     }
-  }, [itemId]);
+    setLoading(false);
+  }, [itemId, products]);
 
   const handleAddToCart = () => {
     addToCart({ ...prod, quantity, totalPrice: prod.price * quantity });
