@@ -1,14 +1,35 @@
 import React, { useState } from 'react';
-import { db } from '../../config/firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, updateDoc, getFirestore, doc } from 'firebase/firestore';
 import './Checkout.css';
 import { useCart } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
   const { cart, dispatch } = useCart();
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+  const db = getFirestore();
+
+  async function reducerStock(itemId, cantidadComprada) {
+    const productoRef = doc(db, 'productos', itemId);
+    try {
+      const productoDoc = await getDoc(productoRef);      
+      if (productoDoc.exists()) {
+        const producto = productoDoc.data();
+        const stockActual = producto.stock;  
+        if (stockActual >= cantidadComprada) {
+          const nuevoStock = stockActual - cantidadComprada;  
+          await updateDoc(productoRef, { stock: nuevoStock });
+        } else {
+          console.log('No hay suficiente stock para completar la compra.');
+        }
+      } else {
+        console.log('El producto no existe en la base de datos.');
+      }
+    } catch (error) {
+      console.error('Error al reducir el stock:', error);
+    }
+  }
+
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -30,7 +51,6 @@ const Checkout = () => {
     setLoading(true);
 
     try {
-      
       if (cart.length === 0) {
         alert("Tu carrito está vacío");
         return;
@@ -48,6 +68,10 @@ const Checkout = () => {
 
       const docRef = await addDoc(collection(db, 'orders'), order);
       setOrderId(docRef.id);
+
+      for (let item of cart) {
+        await reducerStock(item.idFirestore, item.quantity);
+      }
       
       setFormData({
         nombre: '',
@@ -61,14 +85,14 @@ const Checkout = () => {
       setLoading(false);
       setTimeout(() => {
         dispatch({ type: "CLEAR_CART" });
-        navigate('/')
+        navigate('/');
       }, 4500);
     }
   };
 
   if (orderId) {
     return (
-      <div className="checkout-container container-orders" >
+      <div className="checkout-container container-orders">
         <h2 className="checkout-text">
           Gracias por tu compra!<br />
           Tu orden es: {orderId}

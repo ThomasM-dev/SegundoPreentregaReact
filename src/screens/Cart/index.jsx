@@ -23,9 +23,11 @@ const Cart = () => {
               />
               <span className="product-name">{product.title}</span>
               <span className="product-price">
-                ${product.totalPrice.toFixed(2)}
+                Subtotal: ${product.totalPrice.toFixed(2)}
               </span>
-              <span>{product.quantity}</span>
+              <span className="product-quantity">
+                Cantidad: {product.quantity}
+              </span>
               <button
                 className="remove-btn"
                 onClick={() =>

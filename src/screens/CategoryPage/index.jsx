@@ -54,7 +54,7 @@ const CategoryPage = () => {
               <h3>{product.title}</h3>
               <img src={product.imageUrl} alt={product.title} />
               <p>${product.price} ARS</p>
-              <p>Categoría: {product.category}</p>
+              <p>Stock: {product.stock}</p>
               <Link to={`/categoria/${product.category}/DetalleProducto/${product.idFirestore}`}>Ver detalle</Link>
             </div>
           ))}
